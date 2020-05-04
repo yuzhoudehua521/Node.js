@@ -1,1 +1,79 @@
+web服务器相关模块
+
+1.URL中参数的处理，nodeJS的queryString模块
+
+querystring.parse()方法能把一个URL查询字符串(str)解析成一个键值对的集合，参数如下
+str <String> 要解析的 URL 查询字符串。
+sep <String> 用于界定查询字符串中的键值对的子字符串。默认为 '&'。
+eq <String> 用于界定查询字符串中的键与值的子字符串。默认为 '='。
+
+var querystring = require('querystring');
+var str = 'foo=bar&abc=xyz&abc=123';
+console.log(querystring.parse(str));//'{ foo: 'bar', abc: [ 'xyz', '123' ] }'
+
+querystring.stringify()方法是querystring.parse()方法的逆向操作，通过遍历对象的自有属性，从一个给定的obj产生一个URL查询字符串，参数如下
+obj <Object> 要序列化成一个 URL 查询字符串的对象
+sep <String> 用于界定查询字符串中的键值对的子字符串。默认为 '&'
+eq <String> 用于界定查询字符串中的键与值的子字符串。默认为 '='
+
+var querystring = require('querystring');
+console.log(querystring.stringify({ foo: 'bar', baz: ['qux', 'quux'], corge: '' }));//'foo=bar&baz=qux&baz=quux&corge='
+
+
+2.Node.JS获取GET数据
+
+get请求的数据保存在URL中
+//http://127.0.0.1:8080/home/test?a=1&b=2
+var http = require('http');
+var url = require('url');
+var querystring = require('querystring');
+
+http.createServer(function(req,res){
+  var urlObj = url.parse(req.url);
+  var query = urlObj.query;
+  var queryObj = querystring.parse(query);
+  console.log(req.url);   //'/home/test?a=1&b=2'
+  console.log(query);     //'a=1&b=2'
+  console.log(queryObj);  //{ a: '1', b: '2' }
+}).listen(8080);
+
+
+3.Node.JS获取POST数据
+
+post请求的数据会被写入缓冲区中，需要通过request的data事件和end事件来进行数据拼接处理
+var http = require('http');
+var url = require('url');
+var querystring = require('querystring');
+
+http.createServer(function(req,res){
+  var str = '';
+  req.on('data',function(chunk){
+    str += chunk;
+  });
+  req.on('end', function(){
+    console.log(str);             //'name=a&email=b%40b.com'
+    var queryObj = querystring.parse(str);
+    console.log(queryObj);        //{ name: 'a', email: 'b%40b.com' }
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
