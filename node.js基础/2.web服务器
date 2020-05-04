@@ -20,6 +20,7 @@ var querystring = require('querystring');
 console.log(querystring.stringify({ foo: 'bar', baz: ['qux', 'quux'], corge: '' }));//'foo=bar&baz=qux&baz=quux&corge='
 
 
+通过 HTTP 通信，并从中提取出请求的 URL 以及 GET/POST 参数。随后需要根据这些数据来执行相应的操作，从而实现前后端交互。
 2.Node.JS获取GET数据
 
 get请求的数据保存在URL中
