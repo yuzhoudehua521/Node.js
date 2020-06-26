@@ -4,3 +4,35 @@
 select * from （表name）；
 
 2插入表
+inset into (表name) （列1，列2，...） value （列值1，列值2，...）;
+
+多列插入
+inset into (表name) （列1，列2，...） values （列值1，列值2，...）（列值1，列值2，...）;
+
+3更新
+
+更新所有的列
+update （表name） set （列name）= （value）；
+更新一列
+update （表name） set （列name）= （value） where （id）= （1111）；
+
+更新一列+1
+update （表name） set （列name）= （列name）+ 1 where （列1）= （1111）；
+
+ 
+修改数据库密码(abc => 123456)
+use mysql;
+update user set password=password('abc') where user='root';
+update mysql.user set;
+authentication_string=password('123456') where user='root' and host='localhost';
+flush privileges;
+mysqladmin -u root password 123456；
+   
+4删除
+可找回删除，删除一行数据
+delete from (表name) 【where （列1）= （1111）】；
+
+不可找回删除
+truncate table (表name)
+
+
