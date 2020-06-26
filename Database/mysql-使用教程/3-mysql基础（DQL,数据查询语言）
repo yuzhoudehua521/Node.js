@@ -1,1 +1,45 @@
+数据库查询
+
+1查询所有列
+select * from （表name）；
+
+2查询列
+select （列name） from （表name）；
+
+3条件查询
+select * from （表name）where sex=‘男’ and(or, not) age>= 20；
+
+select * from （表name）where age in(10,20,33)；
+
+select * from （表name）where age is null；
+
+4模糊查询
+通配符（_:任意一个字符。 %：任意0-n个字符）
+
+匹配三个字符
+select * from （表name）where name like ‘_ _ _’；
+
+select * from （表name）where name like ‘_ _ s’；
+
+
+匹配任意字符，开头s
+select * from （表name）where name like ‘s%’；
+
+第二个字符为s
+select * from （表name）where name like ‘_s%’；
+
+包含字符s
+select * from （表name）where name like ‘%s%’；
+
+
+5去除重复记录
+select distinct （列name） from (表name)
+
+
+6排序
+升序，降序
+select * from （表name） order by (列name) asc（desc）；
+
+
+
 
