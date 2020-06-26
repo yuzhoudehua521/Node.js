@@ -1,0 +1,17 @@
+var express = require("express") ;
+var app = express() ;
+
+//设置跨域访问
+app.all('*', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With,Content-Type");
+    res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+    res.header("X-Powered-By",' 3.2.1')
+    res.header("Content-Type", "application/json;charset=utf-8");
+    next();
+});
+
+上面的内容主要基于 express 框架的，主要的解决思路是 根据需求 在服务端设置http相应的头部信息，
+Access-Control-Allow-Origin 表示设置允许通过的域名（白名单），
+Access-Control-Allow-Headers设置允许通过的requrest header信息，
+Access-Control-Allow-Methods设置允许通过的请求方式。
