@@ -1,0 +1,58 @@
+ 1mysql数据库分两种：
+ 
+ 1.1系统数据库
+  information_schema(存储数据库对象信息)
+  performance_schema(存储数据库服务器性能信息)
+  mysql(存储用户权限信息)
+  sys(了解系统元数据信息)
+ 
+ 1.2用户数据库（用户自己创建的数据库，一个项目用一个数据库）
+ 
+ 创建数据库：create database （name）；
+ 删除数据库： drop database  （name）；
+ 查看数据库： show database   （name）；
+ 使用数据库： use database    （name）； 查看数据库有多少张表：   show tables；
+ 
+ 
+ 2建立数据库连接服务器：
+ 
+ 2.1建立数据库和字符集
+ create database （name） character set utf8；
+ 
+ 修改数据库
+ alter database （name） character set utf8；
+ 
+ 2.2创建表
+ create table (name) {
+    id     bigint
+    name   varchar[20]
+    email  varchar[20]
+    age    int
+ };
+ 
+添加一列
+alter table (name) add sex varchar;
+ 
+删除一列
+alter table (name) drop sex;
+  
+修改表名
+rename table (name) to (name);
+
+查看表创建细节
+show create table (name);
+
+修改表列名
+alter table （表name） change （列name） (name) int（字符类型）;  
+
+删除表
+drop table (name);
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
