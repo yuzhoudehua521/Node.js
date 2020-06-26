@@ -10,7 +10,7 @@
  
  创建数据库：create database （name）；
  删除数据库： drop database  （name）；
- 查看数据库： show database   （name）；
+ 查看数据库： show databases   （name）；
  使用数据库： use database    （name）； 查看数据库有多少张表：   show tables；
  
  
