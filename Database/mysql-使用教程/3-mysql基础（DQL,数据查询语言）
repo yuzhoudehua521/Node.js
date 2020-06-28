@@ -3,6 +3,9 @@
 1查询所有列
 select * from （表name）；
 
+查询特定行，从0行开始，要查20行
+select * from （表name） limit 0,20；
+
 2查询列
 select （列name） from （表name）；
 
