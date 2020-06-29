@@ -1,0 +1,5 @@
+1.Mongoose安装
+
+npm install mongoose
+
+2.链接本地数据库 mongodb
