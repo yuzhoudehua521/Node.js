@@ -3,3 +3,261 @@
 npm install mongoose
 
 2.链接本地数据库 mongodb
+var mongoose = require('mongoose');
+var DB_URL = 'mongodb://localhost:27017/dataDb（name）';
+
+/* 链接 */
+mongoose.connect(DB_URL);
+
+/* 链接成功 */
+mongoose.connection.on('connected', function() {
+  console.log('Mongoose connection open to ' + DB_URL);
+});
+
+// 链接异常
+mongoose.connection.on('error', function(err) {
+  console.log('Mongoose connection error:' + err);
+});
+
+// 链接断开
+mongoose.connection.on('disconnected', function() {
+  console.log('Mongoose connection disconnected');
+});
+
+
+3.创建数据集合
+var mongoose = require('mongoose');
+// schema定义
+var TestSchema = new mongoose.Schema({
+  name: { type: String },
+  age: { type: String },
+  sex: { type: String }
+});
+
+// 创建model
+var TestModel = mongoose.model('test1', TestSchema);
+
+// 初始化数据 
+var TestInt = new TestModel({
+  name: 'kongzhi',
+  age: '30',
+  sex: 'girl'
+});
+
+console.log(TestInt.name); // kongzhi
+console.log(TestInt.age);  // 30
+console.log(TestInt.sex);  // girl
+
+
+4.插入数据
+var user = new User({
+  username: 'kongzhi0707',
+  password: '123456',
+  age: 30
+});
+
+user.save(function(err, res) {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log(res);
+  }
+});
+
+
+5.更新数据
+var User = require('./user.js');
+
+// 更新数据 
+function update() {
+  // 更新数据的条件查询
+  var wherestr = {'username': 'kongzhi0707'};
+
+  // 执行更新数据
+  var updatestr = {'password': 'abcdef'};
+
+  User.update(wherestr, updatestr, function(err, res) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(res);
+    }
+  });
+}
+// 调用更新函数
+update();
+
+
+
+6.根据id进行更新
+var User = require('./user.js');
+
+// 更新数据 
+
+function update() {
+  // 更新数据的条件查询
+  var id = '5b3a4941ca11752732fee772';
+
+  // 执行更新数据
+  var updatestr = {'password': 'vvvvv'};
+
+  User.findByIdAndUpdate(id, updatestr, function(err, res) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(res);
+    }
+  });
+}
+// 调用更新函数
+update();
+
+
+
+7.删除
+var User = require('./user.js');
+
+function del() {
+  // 删除数据的条件
+  var wherestr = {'username': 'kongzhi0707'};
+
+  User.remove(wherestr, function(err, res) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(res);
+    }
+  });
+}
+// 调用函数
+del();
+
+
+
+8.条件查询
+var User = require('./user.js');
+function find() {
+  // 删除数据的条件
+  var wherestr = {'userName': '龙恩0707'};
+
+  User.find(wherestr, function(err, res) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(res);
+    }
+  });
+}
+// 调用函数
+find();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
