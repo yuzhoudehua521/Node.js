@@ -152,6 +152,11 @@ function find() {
 find();
 
 
+findById()：用指定 id 查找文档（每个文档都有一个唯一 id）。
+findOne()：查找与指定条件匹配的第一个文档。
+findByIdAndRemove()、findByIdAndUpdate()、findOneAndRemove()、 findOneAndUpdate()：通过 id 或条件查找单个文档，并进行更新或删除。以上是更新和删除记录的便利函数。
+
+
 
 
 
