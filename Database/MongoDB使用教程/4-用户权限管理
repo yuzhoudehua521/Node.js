@@ -85,6 +85,23 @@ db.createUser({
 
 
 
+5.重要的一步,启用权限验证
+
+mongo --auth
+
+或者修改mongo.conf，最后一行添加
+auth=true
+
+
+重新启动mongodb
+net stop mongodb;
+net start mongodb;
+
+
+
+
+
+
 
 
 
