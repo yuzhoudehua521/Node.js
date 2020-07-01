@@ -7,6 +7,11 @@ Authentication
 Authorization
 操作授权，我能做什么
 
+进入数据库
+use 数据库（name）
+查看所在数据库用户
+show users
+
 Mongodb的授权采用了角色授权的方法，每个角色包括一组权限。哪个库下面创建用户，这个用户就是哪个库的
 admin数据库可以设置各种控制角色，其他自定义数据库只能设置本数据库控制角色
 Built-In Roles（内置角色）：
