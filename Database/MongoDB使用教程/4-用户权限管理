@@ -106,6 +106,8 @@ sudo vi mongodb.conf
 sudo service mongodb stop 
 sudo service mongodb start
 
-
+db.auth('fayin', 'fayin@39.108')
+1
+成功
 
 
