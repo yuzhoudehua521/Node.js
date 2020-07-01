@@ -47,7 +47,7 @@ restore
 数据库管理角色
 dbAdmin: 在当前db中执行管理操作的权限，允许用户在指定数据库中执行管理函数，如索引创建、删除，查看统计或访问system.profile
 dbOwner: 在当前db中执行任意操作
-userADmin: 在当前db中管理user的权限，允许用户向system.users集合写入，可以找指定数据库里创建、删除和管理用户
+userAdmin: 在当前db中管理user的权限，允许用户向system.users集合写入，可以找指定数据库里创建、删除和管理用户
 
 数据库用户角色
 read: 允许用户读取指定数据库
@@ -74,7 +74,7 @@ use admin
 
 db.createUser({ 
   user: "useradmin", 
-  pwd: "1233456", 
+  pwd: "123456", 
   roles: [{ role: "userAdminAnyDatabase", db: "admin" }] 
 })
 
@@ -101,9 +101,6 @@ auth=true
 重新启动mongodb
 net stop mongodb;
 net start mongodb;
-
-
-
 
 
 
