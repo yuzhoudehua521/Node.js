@@ -1,1 +1,56 @@
+1反向代理
 
+server {
+        listen       80;
+        server_name  www.xxxxx.com;    #要访问的域名
+ 
+        charset utf8;
+ 
+        location / {
+            proxy_pass       http://127.0.0.1:8080;               #映射到代理服务器，可以是ip加端口,   或url 
+            proxy_set_header Host      $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+}
+
+
+2根据不同路径跳转不同端口服务
+
+server {
+        listen       80;
+        server_name  www.xxxxx.com;    #要访问的域名
+ 
+        location  ~ /index/ {                     //根据不同url匹配不同端口服务
+            proxy_pass       http://127.0.0.1:8080;              
+        }
+        
+        location ~  /user/ {
+            proxy_pass       http://127.0.0.1:8081;              
+        }
+}
+
+
+
+3配置ssl证书实现HTTPS访问
+server {
+    listen 443;
+    server_name www.xxxxxx.com; // 你的域名
+    ssl on;
+    root /var/www/bjubi.com; // 前台文件存放文件夹，可改成别的
+    index index.html index.htm;// 上面配置的文件夹里面的index.html
+    ssl_certificate     cert/214292799730473.pem;// 改成你的证书的名字
+    ssl_certificate_key       cert/214292799730473.key;// 你的证书的名字
+    ssl_session_timeout 5m;
+    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;
+    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+    ssl_prefer_server_ciphers on;
+    location / {
+        index index.html index.htm;
+    }
+}
+server {
+    listen 80;
+    server_name bjubi.com;// 你的域名
+    rewrite ^(.*)$ https://$host$1 permanent;// 把http的域名请求转成https
+}
