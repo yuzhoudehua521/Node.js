@@ -10,3 +10,12 @@ nginx -t
 重新加载Nginx
 nginx -s reload
 
+查看已经开放端口号
+firewall-cmd --list-all
+
+对外开放端口
+firewall-cmd --add-service=http --permanent
+firewall-cmd --add-port=8080/tcp --permanent
+
+重启防火墙
+firewall-cmd --reload
