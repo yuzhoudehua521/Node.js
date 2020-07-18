@@ -1,0 +1,12 @@
+启动
+nginx
+
+停止
+nginx -s stop
+
+检查配置文件
+nginx -t
+
+重新加载Nginx
+nginx -s reload
+
