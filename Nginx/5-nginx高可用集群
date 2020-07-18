@@ -1,0 +1,3 @@
+Nginx可能宕机
+
+准备多台Nginx服务器，使用keepalived，虚拟ip地址（对外访问的ip）绑定主服务器-从服务器（内网ip）
