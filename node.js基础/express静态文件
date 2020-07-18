@@ -1,0 +1,6 @@
+app.use(express.static(path.join(__dirname, 'public')))
+
+在public中放入css，js，img文件夹，express会自动寻找
+
+//html里面引入css
+<link rel="stylesheet" type="text/css" href="/css/style.css"/>
