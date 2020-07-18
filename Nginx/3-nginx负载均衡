@@ -1,1 +1,37 @@
+负载均衡将一台服务器面临的压力分散到多台服务器上。
+nginx的负载均衡策略有4种：
 
+1轮询(默认)
+最基本的配置方法，它是upstream的默认策略，每个请求会按时间顺序逐一分配到不同的后端服务器。
+
+2权重
+在轮询策略的基础上制定沦陷的几率，weight参数用于制定轮询的几率，weight默认值为1；weight的数值和被访问的几率成正比。
+
+3ip_hash
+负载均衡器按照客户端IP地址的分配方式，可以确保相同客户端的请求一直发送到相同的服务器。这样每个访客都固定访问一个后端服务器。
+
+4least_conn 最小连接
+把请求转发给连接数较少的后端服务器。轮询算法是把请求平均的转发给各个后端，使它们的负载大致相同；
+但是，有些请求占用的时间很长，会导致其所在的后端负载较高。这种情况下，least_conn这种方式就可以达到更好的负载均衡效果
+
+
+
+http {
+
+    upstream upstream_name {      //upstream_name自定义负载均衡服务器名字
+        server 192.168.0.28:8001;
+        server 192.168.0.28:8002;
+    }
+
+    server {
+        listen       80;
+        server_name  localhost;
+
+        location / {
+            proxy_pass http://upstream_name;        //代理到upstream_name负载均衡服务器
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+    }
+}
