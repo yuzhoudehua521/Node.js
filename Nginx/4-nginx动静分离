@@ -1,1 +1,17 @@
+把动态请求和静态请求分离
 
+
+server {
+　　listen 80;
+　　server_name 192.168.25.35;   
+
+　　location /static/~(.*)(\.jpg|\.png|\.gif|\.jepg|\.css|\.js|\.css){  #  www.xxx.com/static/ 静态资源则路由到这里
+　　　　alias html;
+　　}
+
+　　location / {  #  其他的url则转发到 http://192.168.25.35:8080
+　　　　proxy_pass http://192.168.25.35:8080;
+
+　　}
+
+}
