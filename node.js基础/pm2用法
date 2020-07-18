@@ -1,0 +1,43 @@
+开始
+npm install -g pm2
+pm2 start app.js
+
+
+可以给你app起个名字
+
+pm2 start app.js --name amao
+
+监听你程序
+
+pm2 start app.js --watch
+
+
+不要给她过多的自由，不然就是一片草原，还是给她画个圈圈的好。
+pm2 start app.js --max-memory-restart 200M
+
+
+出门记得安装上行车记录仪，日志不能忘。
+pm2 start app.js --log /var/home/jvy
+
+
+宕机了怎么办，必须重启啊。别忘记你的宠物叫阿毛
+pm2 restart amao或者
+pm2 reload amao
+
+
+时间长了，总有腻的时候，不要了分居暂停一下。
+pm2 stop amao
+
+
+坚持不住了，分手
+pm2 delete amao
+
+
+查看所有宠物
+pm2 list
+
+
+负载均衡
+pm2 start app.js -i 3# 开启三个进程
+
+pm2 start app.js -i max# 根据机器CPU核数，开启对应数目的进程
